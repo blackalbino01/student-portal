@@ -13,7 +13,7 @@ function dropDown(){
 
   			selectState.onchange = function() {
 	  			selectLocal.length = 1;
-	  			for(let local in states[this.value]) {
+	  			for(let local in states[state].local) {
 	  				selectLocal.options[selectLocal.options.length] = new Option(local, local);
 	  			}
   			}
