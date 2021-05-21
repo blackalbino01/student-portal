@@ -4,7 +4,6 @@ function dropDown(){
 	  .then(data => {
 	  	let mydata = data;
 	  	let states = mydata["states"];
-	  	console.log(states)
   		let selectState = document.getElementById('state');
   		let selectLocal = document.getElementById('local');
   		
@@ -13,8 +12,9 @@ function dropDown(){
 
   			selectState.onchange = function() {
 	  			selectLocal.length = 1;
-	  			for(let local in states[state].local) {
-	  				selectLocal.options[selectLocal.options.length] = new Option(local, local);
+	  			let index = states.findIndex(item=>item.state==this.value);
+	  			for(let localgovt in states[index].local) {
+	  				selectLocal.options[selectLocal.options.length] = new Option(states[index].local[localgovt], states[index].local[localgovt]);
 	  			}
   			}
   		}

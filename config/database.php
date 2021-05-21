@@ -23,20 +23,7 @@
             $connection = $this->connection();
             $statement = $connection->prepare($sql);
 
-            $statement->bindParam(1, $uploadimg, PDO::PARAM_STR);
-            $statement->bindParam(2, $fname, PDO::PARAM_STR);
-            $statement->bindParam(3, $mname, PDO::PARAM_STR);
-            $statement->bindParam(4, $lname, PDO::PARAM_STR);
-            $statement->bindParam(5, $email, PDO::PARAM_STR);
-            $statement->bindParam(6, $birthday, PDO::PARAM_INT);
-            $statement->bindParam(7, $gender, PDO::PARAM_STR);
-            $statement->bindParam(8, $phone, PDO::PARAM_INT);
-            $statement->bindParam(9, $address, PDO::PARAM_STR);
-            $statement->bindParam(10, $state, PDO::PARAM_STR);
-            $statement->bindParam(11, $localgovt, PDO::PARAM_STR);
-            $statement->bindParam(12, $nextofkin, PDO::PARAM_STR);
-            $statement->bindParam(13, $jambscore, PDO::PARAM_INT);
-
+            $statement->bindParam('sssssisissssi', $uploadimg, $fname, $mname, $lname, $email, $birthday, $gender, $phone, $address, $state, $localgovt, $nextofkin, $jambscore);
 
             $statement->execute();
             $connection = null;
@@ -76,38 +63,6 @@
                 }
             }
         }
-
-        /*public function update($Course, $Course_Desc, $id) {
-            $sql = "UPDATE courses set Course = ?, Course_Desc = ? WHERE id = ?";
-            try {
-                $connection = $this->connection();
-                $statement = $connection->prepare($sql);
-                $statement->bindParam(1, $Course, PDO::PARAM_STR);
-                $statement->bindParam(2, $Course_Desc, PDO::PARAM_STR);
-                $statement->bindParam(3, $id, PDO::PARAM_INT);
-                $statement->execute();
-                $connection = null;
-                return true;
-            } catch (PDOException $e) {
-                echo $e->getMessage();
-                return false;
-        }
-        }
-
-        public function delete($id) {
-            $sql = "DELETE FROM courses WHERE id = ?";
-            try {
-                $connection = $this->connection();
-                $statement = $connection->prepare($sql);
-                $statement->bindParam(1, $id, PDO::PARAM_INT);
-                $statement->execute();
-                $connection = null;
-                return true;
-            } catch (PDOException $e) {
-                echo $e->getMessage();
-                return false;
-            }
-        }*/
     }
 
 

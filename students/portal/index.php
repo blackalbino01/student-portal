@@ -1,6 +1,7 @@
 <?php
-	require "../../config/students.php";
-	if (isset($_POST['submit'])) {
+	require '../../config/conn.php';
+    
+	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	    $uploadimg = $_POST['uploadimg'];
 	    $fname = $_POST['fname'];
 	    $mname = $_POST['mname'];
@@ -14,10 +15,17 @@
 	    $localgovt = $_POST['localgovt'];
 	    $nextofkin = $_POST['nextofkin'];
 	    $jambscore = $_POST['jambscore'];
-	    $insert = new Student();
-	    $insert->addStudent($uploadimg,$fname,$mname,$lname,$email,$birthday,$gender,$phone,$address,$state,$localgovt,$nextofkin,$jambscore);
+
+        $statement = "INSERT INTO studentinfo(`uploadimg`,`fname`,`mname`,`lname`,`email`,`birthday`
+            ,`gender`,`phone`,`address`,`state`,`localgovt`,`nextofkin`,`jambscore`) VALUES ('".$uploadimg."', '".$fname."', '".$mname."', '".$lname."', '".$email."', '".$birthday."', '".$gender."', '".$phone."', '".$address."', '".$state."', '".$localgovt."', '".$nextofkin."', '".$jambscore."')";
+        mysqli_query($conn,$statement);
+
+	    //$insert = new Student();
+	    //$insert->addStudent($uploadimg,$fname,$mname,$lname,$email,$birthday,$gender,$phone,$address,$state,$localgovt,$nextofkin,$jambscore);
 	    $_SESSION["flash"] = ["type" => "success", "message" => "Student successfully created"];
 	    header("Location:index.php");
+
+	    mysqli_close($conn);
 	}
 ?>
 <!DOCTYPE html>
@@ -59,7 +67,7 @@
 				</p>
 				<div class="personal-form">
 					<h3>Personal Information</h3>
-					<form method="post">
+					<form method="POST" enctype="multipart/form-data" >
 		                <div class="row flex">
 		                    <div class="col-50">
 		                        <label for="uploadimg">Upload Image:</label><br>
@@ -89,7 +97,7 @@
 		                <div class="row flex">
 		                	<div class="col-50">
 		                		<label for="birthday">Date of Birth</label><br>
-		                        <input type="date" id="birthday" name="birthday" placeholder="yyyy/mm/dd" required>
+		                        <input type="text" id="birthday" name="birthday" required>
 		                	</div>
 		                	<div class="col-50 checkbox">
 		                		<label for="male">Male</label>
@@ -101,7 +109,7 @@
 		                <div class="row flex">
 		                	<div class="col-50">
 		                		<label for="phone">Phone number</label><br>
-		                        <input type="tel" id="phone" name="phone" placeholder="Enter PhoneNumber" required>
+		                        <input type="text" id="phone" name="phone" placeholder="Enter PhoneNumber" required>
 		                	</div>
 		                	<div class="col-50">
 		               		<label for="address">Address</label><br>
@@ -130,7 +138,7 @@
 		                	</div>
 		                	<div class="col-50">
 		                		<label for="jambscore">Jamb Score</label><br>
-		                		<input type="number" name="jambscore" required><br>
+		                		<input type="text" name="jambscore" required><br>
 		                	</div>
 		                </div>
 	                	<div class="row flex submit">

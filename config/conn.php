@@ -1,23 +1,16 @@
 <?php
-class PDOConfig extends PDO
-{
+    define('db_host','localhost');
+    define('db_user','root');
+    define('db_password','');
+    define('db_database','student-portal');
 
-    private $host = 'localhost';
-    private $user  = 'root';
-    private $database = 'student-portal';
-
-   public $con =null;
-    public function __construct()
-    {
-        $this->host = 'localhost';
-        $this->user = 'root';
-        $this->database = 'student-portal';
-        $dsn = 'mysql:host=' . $this->host . ';database=' . $this->database;
-        parent::__construct($dsn, $this->user);
+    $conn = mysqli_connect(db_host, db_user, db_password, db_database);
     
 
-
-    }
-
-   
-}
+    if(mysqli_connect_errno()) {
+        $msg = "Database connection failed: ";
+        $msg .= mysqli_connect_error();
+        $msg .= " : " . mysqli_connect_errno();
+        exit($msg);
+      }
+?>
