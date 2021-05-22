@@ -1,8 +1,9 @@
 <?php
-	require '../../config/conn.php';
+	session_start();
+	require_once('../../config/students.php');
     
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	    $uploadimg = $_POST['uploadimg'];
+	    $uploadimg = $_FILES['uploadimg']['name'];
 	    $fname = $_POST['fname'];
 	    $mname = $_POST['mname'];
 	    $lname = $_POST['lname'];
@@ -16,16 +17,13 @@
 	    $nextofkin = $_POST['nextofkin'];
 	    $jambscore = $_POST['jambscore'];
 
-        $statement = "INSERT INTO studentinfo(`uploadimg`,`fname`,`mname`,`lname`,`email`,`birthday`
-            ,`gender`,`phone`,`address`,`state`,`localgovt`,`nextofkin`,`jambscore`) VALUES ('".$uploadimg."', '".$fname."', '".$mname."', '".$lname."', '".$email."', '".$birthday."', '".$gender."', '".$phone."', '".$address."', '".$state."', '".$localgovt."', '".$nextofkin."', '".$jambscore."')";
-        mysqli_query($conn,$statement);
+	    $target = "../images/".basename($uploadimg);
+        move_uploaded_file($_FILES['uploadimg']['tmp_name'], $target);
 
-	    //$insert = new Student();
-	    //$insert->addStudent($uploadimg,$fname,$mname,$lname,$email,$birthday,$gender,$phone,$address,$state,$localgovt,$nextofkin,$jambscore);
-	    $_SESSION["flash"] = ["type" => "success", "message" => "Student successfully created"];
-	    header("Location:index.php");
-
-	    mysqli_close($conn);
+	    $insert = new Student();
+	    $insert->addStudent($uploadimg,$fname,$mname,$lname,$email,$birthday,$gender,$phone,$address,$state,$localgovt,$nextofkin,$jambscore);
+	    $_SESSION["flash"] = ["type" => "success", "message" => "Student Successfully Added!!"];
+	    header("Location:" . "../../admin/dashboard");
 	}
 ?>
 <!DOCTYPE html>
@@ -46,7 +44,7 @@
 					</h1>
 				</div>
 				<div class="nav-items-portal flex">
-					<a href="students/portal">
+					<a href="#">
 						Portal
 					</a>
 					<a href="../admin/dashboard">
@@ -58,6 +56,12 @@
 	</header>
 	<section>
 		<div class="content-portal">
+			<?php if(isset($_SESSION['flash'])): ?>
+			<div class="alert alert-success" style="position: fixed; top: 30%;" role="alert">
+				<?php echo $_SESSION['flash']['message']; ?>
+			</div>
+			<?php endif; ?>
+			<?php unset($_SESSION['flash']); ?>
 			<div class="form-container">
 				<p class="title">
 					Student Portal Form
@@ -97,7 +101,7 @@
 		                <div class="row flex">
 		                	<div class="col-50">
 		                		<label for="birthday">Date of Birth</label><br>
-		                        <input type="text" id="birthday" name="birthday" required>
+		                        <input type="date" id="birthday" name="birthday" placeholder="yyyy/mm/dd" required>
 		                	</div>
 		                	<div class="col-50 checkbox">
 		                		<label for="male">Male</label>

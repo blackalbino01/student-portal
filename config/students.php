@@ -1,6 +1,6 @@
 <?php
 
-require 'database.php';
+require_once('database.php');
 
 class Student {
     public $uploadimg;
@@ -23,11 +23,6 @@ class Student {
     public function addStudent($uploadimg,$fname,$mname,$lname,$email,$birthday,$gender,$phone,$address,$state,$localgovt,$nextofkin,$jambscore) {
 
         $db = new DatabaseTranscations();
-        $inserted = $db->insert($uploadimg,$fname,$mname,$lname,$email,$birthday,$gender,$phone,$address,$state,$localgovt,$nextofkin,$jambscore);
-        if ($inserted) {
-            return "Successfully inserted";
-        } else {
-            return "Something went wrong insertion did not happen";
-        }
+        $insert= $db->insert($uploadimg,$fname,$mname,$lname,$email,$birthday,$gender,$phone,$address,$state,$localgovt,$nextofkin,$jambscore);
     }
 }

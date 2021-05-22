@@ -17,21 +17,19 @@
         }
 
         public function insert($uploadimg,$fname,$mname,$lname,$email,$birthday,$gender,$phone,$address,$state,$localgovt,$nextofkin,$jambscore) {
-            $sql = "INSERT INTO studentinfo(uploadimg,fname,mname,lname,email,birthday
-            ,gender,phone,address,state,localgovt,nextofkin,jambscore) VALUES (?, ?,?,?,?,?,?,?,?,?,?,?,?)";
-        try {
-            $connection = $this->connection();
-            $statement = $connection->prepare($sql);
 
-            $statement->bindParam('sssssisissssi', $uploadimg, $fname, $mname, $lname, $email, $birthday, $gender, $phone, $address, $state, $localgovt, $nextofkin, $jambscore);
+            $sql = "INSERT INTO studentinfo(`uploadimg`,`fname`,`mname`,`lname`,`email`,`birthday`,`gender`,`phone`,`address`,`state`,`localgovt`,`nextofkin`,`jambscore`) VALUES ('".$uploadimg."', '".$fname."', '".$mname."', '".$lname."', '".$email."', '".$birthday."', '".$gender."', '".$phone."', '".$address."', '".$state."', '".$localgovt."', '".$nextofkin."', '".$jambscore."')";
+            try {
+                $connection = $this->connection();
+                $statement = $connection->prepare($sql);
 
-            $statement->execute();
-            $connection = null;
-            return true;
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-            return false;
-        }
+                $statement->execute();
+                $connection = null;
+                return true;
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+                return false;
+            }
         }
 
         public function select($id = null) {
