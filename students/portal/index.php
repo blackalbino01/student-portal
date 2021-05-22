@@ -1,6 +1,5 @@
 <?php
-	session_start();
-	require_once('../../config/students.php');
+	require '../../config/students.php';
     
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	    $uploadimg = $_FILES['uploadimg']['name'];
@@ -22,7 +21,6 @@
 
 	    $insert = new Student();
 	    $insert->addStudent($uploadimg,$fname,$mname,$lname,$email,$birthday,$gender,$phone,$address,$state,$localgovt,$nextofkin,$jambscore);
-	    $_SESSION["flash"] = ["type" => "success", "message" => "Student Successfully Added!!"];
 	    header("Location:" . "../../admin/dashboard");
 	}
 ?>
@@ -47,7 +45,7 @@
 					<a href="#">
 						Portal
 					</a>
-					<a href="../admin/dashboard">
+					<a href="../../admin/dashboard">
 						Dashboard
 					</a>
 				</div>
@@ -56,12 +54,6 @@
 	</header>
 	<section>
 		<div class="content-portal">
-			<?php if(isset($_SESSION['flash'])): ?>
-			<div class="alert alert-success" style="position: fixed; top: 30%;" role="alert">
-				<?php echo $_SESSION['flash']['message']; ?>
-			</div>
-			<?php endif; ?>
-			<?php unset($_SESSION['flash']); ?>
 			<div class="form-container">
 				<p class="title">
 					Student Portal Form

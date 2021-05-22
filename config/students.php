@@ -1,6 +1,6 @@
 <?php
 
-require_once('database.php');
+require_once 'database.php';
 
 class Student {
     public $uploadimg;
@@ -16,6 +16,8 @@ class Student {
     public $localgovt;
     public $nextofkin;
     public $jambscore;
+    public $name;
+    public $admstatus;
     private $db;
     public function __construct() {
     }
@@ -24,5 +26,37 @@ class Student {
 
         $db = new DatabaseTranscations();
         $insert= $db->insert($uploadimg,$fname,$mname,$lname,$email,$birthday,$gender,$phone,$address,$state,$localgovt,$nextofkin,$jambscore);
+    }
+
+    public function viewStudents() {
+       $db = new DatabaseTranscations();
+       $result = $db->select();
+       if ($result) {
+           return $result;
+       } else {
+           return "No results returned";
+       }
+    }
+
+    public function viewStudent($id) {
+       $id = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
+
+       $db = new DatabaseTranscations();
+       $result = $db->select($id);
+       if ($result) {
+           return $result;
+       } else {
+           return "No results returned";
+       }
+    }
+
+    public function searchStudents($name ,$admstatus,$gender ,$jambscore){
+        $db = new DatabaseTranscations();
+        $result = $db->searchSelect($name,$admstatus,$gender,$jambscore);
+        if ($result) {
+           return $result;
+        } else {
+           return "No results returned";
+        }
     }
 }
