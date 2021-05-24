@@ -67,7 +67,7 @@
 				</p>
 				<div class="personal-form">
 					<h3>Personal Information</h3>
-					<form method="POST" enctype="multipart/form-data" >
+					<form method="POST" name="Form" enctype="multipart/form-data" >
 		                <div class="row flex">
 		                    <div class="col-50">
 		                        <label for="uploadimg">Upload Image:</label><br>
@@ -142,7 +142,7 @@
 		                	</div>
 		                </div>
 	                	<div class="row flex submit">
-	                		<input type="submit" id='popup' name="submit" value="Submit" onclick="popUp()" >
+	                		<input type="submit" id='popup' name="submit" value="Submit" onclick="validate()" >
 	                	</div>
 		            </form>
 				</div>
