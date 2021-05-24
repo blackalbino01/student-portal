@@ -52,7 +52,11 @@
 			</div>
 		</nav>
 	</header>
-	<section>
+	<section style="position: relative;">
+		<div class="alert">
+			<span class="closebtn" onclick="this.parentElement.style.display='none';" >&times;</span>
+			<strong>Success!</strong>Form Submitted Successfully.
+		</div>
 		<div class="content-portal">
 			<div class="form-container">
 				<p class="title">
@@ -138,16 +142,16 @@
 		                	</div>
 		                </div>
 	                	<div class="row flex submit">
-	                		<input type="submit" name="submit" value="Submit">
+	                		<input type="submit" name="submit" value="Submit" onclick="alert('Form Succefully Submitted');" >
 	                	</div>
 		            </form>
 				</div>
 			</div>
 		</div>
+		<footer>
+			<p class="footer">All Right Reserved @Ustacky 2021</p>
+		</footer>
 	</section>
-	<footer>
-		<p class="footer">All Right Reserved @Ustacky 2021</p>
-	</footer>
 	<script language="javascript" type="text/javascript" src="../../assets/js/script.js"></script>
 </body>
 </html>

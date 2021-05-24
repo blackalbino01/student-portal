@@ -55,7 +55,7 @@ nav{
 	padding: 10px;
 }
 
-.logo a{
+.logo a,.logo-student-info a{
 	margin: 0 10px;
 	color: grey;
 	font-family: arial;
@@ -98,6 +98,7 @@ nav{
 }
 
 .content-portal{
+	position: relative;
 	padding: 20px 155px;
 	padding-bottom: 80px;
 }
@@ -243,8 +244,10 @@ input[type=date]{
 @media(max-width: 800px){
 
 	.content-portal{
-		padding: 20px;
-		padding-bottom:40px;
+		padding: 0 20px;
+		padding-top: 20px;
+		padding-bottom: 70px;
+
 	}
 
 	.row{
@@ -259,6 +262,10 @@ input[type=date]{
 	.row .col-50:last-child{
 	padding-right: 30px;
 	}
+
+	.form-container input[type=submit]{
+		margin: auto;	
+	}
 }
 
 .notice{
@@ -267,6 +274,23 @@ input[type=date]{
 	padding-left: 15px;
 	border-radius: 5px;
 
+}
+
+.alert{
+	padding: 20px;
+	background-color: lightgreen;
+	color: var(--white);
+}
+
+.alert .closebtn{
+	margin-left: 15px;
+	color: var(--white);
+	font-weight: bold;
+	float: right;
+	font-size: 22px;
+	line-height: 20px;
+	cursor: pointer;
+	transition: 0.3s;
 }
 
 .dashboard-row{
@@ -322,6 +346,7 @@ td,th{
 	padding: 3px 3px;
 	border-radius: 5px;
 }
+
 
 @media(max-width: 800px){
 	.dashboard-row{
@@ -423,12 +448,18 @@ td,th{
 
 @media(max-width: 800px){
 
+	.content-student-info{
+		padding: 0px 40px; 
+		padding-bottom: 70px;
+		padding-top: 20px;
+	}
+
 	footer{
 		position: absolute;
 		bottom: 0;
 	}
 
-	.logo{
+	.logo-student-info{
 		display: none;
 	}
 	.info{

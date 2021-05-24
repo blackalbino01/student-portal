@@ -1,20 +1,3 @@
-<?php require "../../config/students.php";
-	if (isset($_POST['admstatus'])) {
-		$admstatus = $_POST['admstatus'];
-		$id = $_GET['id'];
-
-
-		$update = new Student();
-		$update->editAdmstatus($admstatus,$id);
-	}
-
-    if (isset($_GET['id'])) {
-        $student = new Student();
-        $result = $student->viewStudent($_GET['id']);
-    } else {
-        echo "Something went wrong!";
-        exit;
-    } ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +12,7 @@
 		<header>
 			<nav>
 				<div class="nav-menu flex">
-					<div class="logo">
+					<div class="logo-student-info">
 						<h1>
 							<a href="../../">USTACKY</a>
 						</h1>
@@ -50,40 +33,74 @@
 		</header>
 		<section>
 			<div class="content-student-info">
-				<div class="info flex">
-					<div class="left-info">
-						<div class="left-info-img">
-							<img src="../../students/images/hussain.jpg">
-						</div>
-						<p>Name: <?php echo $result['fname'].' '.$result['mname'].' '.$result['lname']; ?></p>
-						<div class="status"><p>Status: <span id="updatestatus">Undecided</span></p></div>
-					</div>
-					<div class="right-info">
-						<h3>Personal Information</h3>
-						<div class="right-info-items">
-							<p>Email: <?php echo $result['email']; ?></p>
-							<p>Gender: <?php echo $result['gender']; ?></p>
-							<p>Phone Number: <?php echo $result['phone']; ?></p>
-							<p>Date Of Birth: <?php echo $result['birthday']; ?></p>
-							<p>Address: <?php echo $result['address']; ?></p>
-						</div>
-					</div>
-				</div>
-				<div class="other-info">
-					<h3>Other Information</h3>
-					<div class="other-info-items flex">
-						<p>State Of Origin: <?php echo $result['state']; ?></p>
-						<p>Local Govt: <?php echo $result['localgovt']; ?></p>
-				    </div>
-				</div>
-				<div class="academic-info">
-					<h3>Academics Related Information</h3>
-					<div class="academic-info-items flex">
-						<p>Next Of Kin: <?php echo $result['nextofkin']; ?></p>
-						<p>Jamb Score: <?php echo $result['jambscore']; ?></p>
-						<p><form method="POST" id="formid" ><input type="checkbox" id="status" name="admstatus" value="Admitted" <?php if($result['admstatus']=="Admitted"){ echo "checked";}?> ></form>Status: Admitted</p>
-				    </div>
-				</div>
+				<?php 
+					require_once "../../config/students.php";
+					if (isset($_GET['id'])) {
+				        $student = new Student();
+				        $result = $student->viewStudent($_GET['id']);
+
+						echo "<div class=\"info flex\">";
+							echo "<div class=\"left-info\">";
+								echo "<div class=\"left-info-img\">";
+									echo "<img src=\"../../students/images/".$result['uploadimg']."\">";
+								echo "</div>";
+								echo "<p>Name: ".$result['fname'].' '.$result['mname'].' '.$result['lname']."</p>";
+								echo "<div class=\"status\"><p>Status: <span id=\"updatestatus\">Undecided</span></p></div>";
+							echo "</div>";
+							echo "<div class=\"right-info\">";
+								echo "<h3>Personal Information</h3>";
+								echo "<div class=\"right-info-items\">";
+									echo "<p>Email: ".$result['email']."</p>";
+									echo "<p>Gender: ".$result['gender']."</p>";
+									echo "<p>Phone Number: ".$result['phone']."</p>";
+									echo "<p>Date Of Birth: ".$result['birthday']."</p>";
+									echo "<p>Address: ".$result['address']."</p>";
+								echo "</div>";
+							echo "</div>";
+						echo "</div>";
+						echo "<div class=\"other-info\">";
+							echo "<h3>Other Information</h3>";
+							echo "<div class=\"other-info-items flex\">";
+								echo "<p>State Of Origin: ".$result['state']."</p>";
+								echo "<p>Local Govt: ".$result['localgovt']."</p>";
+						    echo "</div>";
+						echo "</div>";
+						echo "<div class=\"academic-info\">";
+							echo "<h3>Academics Related Information</h3>";
+							echo "<div class=\"academic-info-items flex\">";
+								echo "<p>Next Of Kin: ".$result['nextofkin']."</p>";
+								echo "<p>Jamb Score: ".$result['jambscore']."</p>";
+								echo "<p><form method=\"POST\" id=\"formid\" action=".$_SERVER['PHP_SELF'].'?id='.$_GET['id']." ><input type=\"checkbox\" id=\"status\" name=\"admstatus\" value=\"Admitted\""; 
+								if($result['admstatus']=="Admitted"){ 
+									echo "checked";
+								}
+								echo "></form>Status: Admitted</p>";
+						    echo "</div>";
+						echo "</div>";
+
+
+						if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+							if(isset($_POST['admstatus'])){
+								$admstatus = $_POST['admstatus'];
+								$id = $_GET['id'];
+
+
+								$update = new Student();
+								$update->editAdmstatus($admstatus,$id);
+							}
+							else{
+								$admstatus = 'Undecided';
+								$id = $_GET['id'];
+
+
+								$update = new Student();
+								$update->editAdmstatus($admstatus,$id);
+							}
+							
+						}
+					}
+				?>
 			</div>
 		</section>
 		<footer>

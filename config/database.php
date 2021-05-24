@@ -77,7 +77,7 @@
         }
 
         public function update($admstatus,$id) {
-            $sql = "UPDATE studentinfo set `admstatus` = '$admstatus' WHERE id = $id";
+            $sql = "UPDATE studentinfo set `admstatus` = '$admstatus' WHERE `id` = $id";
             try {
                 $connection = $this->connection();
                 $statement = $connection->prepare($sql);

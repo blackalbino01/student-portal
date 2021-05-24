@@ -23,9 +23,15 @@ function dropDown(){
 }
 let checkStatus = document.getElementById('status');
 let updateStatus = document.getElementById('updatestatus');
-let formId = document.getElementById('formid');
 
-checkStatus.onclick = function(){
+
+//check if status is already checked
+if(checkStatus.checked){
+	updateStatus.innerText = "Admitted";
+}
+
+checkStatus.onclick = function(e){
+	e.preventDefault;
 	if (checkStatus.checked) {
 		checkStatus.value = "Admitted";
 	}
@@ -33,9 +39,10 @@ checkStatus.onclick = function(){
 		checkStatus.value = "Undecided";
 	}
 	updateStatus.innerText = checkStatus.value;
+	submitForm();
 }
 
-checkStatus.onchange = function(e){
-	e.preventDefault;
-	formId.form.submit();
+function submitForm(){
+	let form = document.getElementById('formid');
+	form.submit();
 }

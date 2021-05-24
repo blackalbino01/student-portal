@@ -62,7 +62,7 @@ class Student {
 
     public function editAdmstatus($admstatus,$id) {
         $db = new DatabaseTranscations();
-        $result = $db->update($id,$admstatus);
+        $result = $db->update($admstatus,$id);
         if ($result) {
             return true;
         } else {
