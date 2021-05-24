@@ -46,3 +46,10 @@ function submitForm(){
 	let form = document.getElementById('formid');
 	form.submit();
 }
+
+function popUp(){
+	let notify = document.getElementById('alert');
+	notify.style.display = 'block';
+	setTimeout(function(){
+		notify.style.display='none';},1000);
+}

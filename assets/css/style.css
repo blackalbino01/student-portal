@@ -105,6 +105,8 @@ nav{
 
 .content-dashboard{
 	padding: 20px;
+	padding-bottom: 80px;
+
 }
 
 .content-student-info{
@@ -276,7 +278,13 @@ input[type=date]{
 
 }
 
+
+
 .alert{
+	position: absolute;
+	top: 30%;
+	right:20px;
+	z-index:1;
 	padding: 20px;
 	background-color: lightgreen;
 	color: var(--white);

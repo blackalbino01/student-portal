@@ -53,7 +53,7 @@
 		</nav>
 	</header>
 	<section style="position: relative;">
-		<div class="alert">
+		<div class="alert" id='alert' style="display: none" >
 			<span class="closebtn" onclick="this.parentElement.style.display='none';" >&times;</span>
 			<strong>Success!</strong>Form Submitted Successfully.
 		</div>
@@ -142,7 +142,7 @@
 		                	</div>
 		                </div>
 	                	<div class="row flex submit">
-	                		<input type="submit" name="submit" value="Submit" onclick="alert('Form Succefully Submitted');" >
+	                		<input type="submit" id='popup' name="submit" value="Submit" onclick="popUp()" >
 	                	</div>
 		            </form>
 				</div>

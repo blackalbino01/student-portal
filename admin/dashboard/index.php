@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
 </head>
-<body style="position: relative;height: 100%">
+<body style="position: relative;">
 	<header>
 		<nav>
 			<div class="nav-menu flex">
