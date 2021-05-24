@@ -88,7 +88,7 @@
 										echo "<td>" .$row['gender']. "</td>";
 										echo "<td>" .$row['jambscore']. "</td>";
 										echo "<td>" .$row['admstatus']. "</td>";
-										echo "<td><a href=\"student-info.html\"><i class=\"fas fa-eye\"></i></a></td>";
+										echo "<td><a href=\"../students?id=".$row['id']."\"><i class=\"fas fa-eye\"></i></a></td>";
 									echo "</tr>";
 								}
 							}
@@ -111,7 +111,7 @@
 										echo "<td>" .$row['gender']. "</td>";
 										echo "<td>" .$row['jambscore']. "</td>";
 										echo "<td>" .$row['admstatus']. "</td>";
-										echo "<td><a href=\"student-info.html\"><i class=\"fas fa-eye\"></i></a></td>";
+										echo "<td><a href=\"../students?id=".$row['id']."\"><i class=\"fas fa-eye\"></i></a></td>";
 									echo "</tr>";
 								}
 							}

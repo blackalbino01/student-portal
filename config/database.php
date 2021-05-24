@@ -76,9 +76,18 @@
             }          
         }
 
+        public function update($admstatus,$id) {
+            $sql = "UPDATE studentinfo set `admstatus` = '$admstatus' WHERE id = $id";
+            try {
+                $connection = $this->connection();
+                $statement = $connection->prepare($sql);
+                $statement->execute();
+                $connection = null;
+                return true;
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+                return false;
+              }
+        }
+
     }
-
-
-
-
-

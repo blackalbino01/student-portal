@@ -59,4 +59,14 @@ class Student {
            return "No results returned";
         }
     }
+
+    public function editAdmstatus($admstatus,$id) {
+        $db = new DatabaseTranscations();
+        $result = $db->update($id,$admstatus);
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

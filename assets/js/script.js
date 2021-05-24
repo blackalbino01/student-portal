@@ -21,8 +21,21 @@ function dropDown(){
   		
 	  });
 }
-setTimeout(function() {
-    let alert = document.querySelector(".alert");
-        alert.remove();
-}, 3000);
-    
+let checkStatus = document.getElementById('status');
+let updateStatus = document.getElementById('updatestatus');
+let formId = document.getElementById('formid');
+
+checkStatus.onclick = function(){
+	if (checkStatus.checked) {
+		checkStatus.value = "Admitted";
+	}
+	else{
+		checkStatus.value = "Undecided";
+	}
+	updateStatus.innerText = checkStatus.value;
+}
+
+checkStatus.onchange = function(e){
+	e.preventDefault;
+	formId.form.submit();
+}
