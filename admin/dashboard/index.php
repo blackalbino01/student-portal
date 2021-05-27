@@ -94,7 +94,9 @@
 							}
 
 							else{
-								echo "No Record Found!!!";
+								echo "<tr>
+								<td colspan=6>No Student Record Found!</td>
+								</tr>";
 							}
 						}
 						else{
@@ -115,10 +117,14 @@
 									echo "</tr>";
 								}
 							}
+							else{
+								echo "<tr>
+								<td colspan=6>No Student Record Found!</td>
+								</tr>";
+							}
 						}
 					?>
-								
-				</table>
+				</table> 
 			</div>
 		</div>
 	</section>

@@ -12,11 +12,11 @@
 			<div class="nav-menu flex">
 				<div class="logo">
 					<h1>
-						<a href="index.php">USTACKY</a>
+						<a href=".">USTACKY</a>
 					</h1>
 				</div>
 				<div class="nav-items-home flex">
-					<a href="index.php">
+					<a href=".">
 						Home
 					</a>
 					<a href="students/portal">
