@@ -230,6 +230,10 @@ input[type=text],input[type=file],input[type=email],input[type=date],input[type=
 	width: 100%;
 }
 
+input[type=text],input[type=email],input[type=tel],select,input[type=number]{
+	padding-left: 10px;
+}
+
 .form-container input[type=submit]{
 	width:30%;
 	background-color: var(--primary);
