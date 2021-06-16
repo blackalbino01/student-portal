@@ -62,8 +62,8 @@
            }
         }
 
-        public function searchSelect($name = null,$admstatus = null,$gender = null,$jambscore = null){
-            $sql = "SELECT * FROM studentinfo WHERE (concat(`fname`,' ',`mname`,' ',`lname`)= '$name') OR (concat(`fname`,' ',`lname`)= '$name') OR `fname` = '$name' OR `mname` = '$name' OR `lname` = '$name' OR `admstatus` = '$admstatus' OR `gender` = '$gender' OR `jambscore` = '$jambscore'";  
+        public function searchSelect($gender = null,$jambscore = null){
+            $sql = "SELECT * FROM studentinfo WHERE `gender` = '$gender' AND `jambscore` = '$jambscore'";  
             try {
                $connection = $this->connection();
                $statement = $connection->query($sql);
@@ -74,6 +74,38 @@
                echo $e->getMessage();
                return false;
             }          
+        }
+
+        public function ajaxsearch($admstatus=null){
+            $sql = "SELECT * FROM studentinfo WHERE `admstatus`= '$admstatus'";
+
+            try{
+                $connection = $this->connection();
+                $statement = $connection->query($sql);
+                $result = $statement->fetchAll();
+                $connection = null;
+                return $result;
+            }
+            catch(PDOException $e){
+                echo $e->getMessage();
+                return false;
+            }
+        }
+
+        public function liveSearch($name=null){
+            $sql = "SELECT * FROM studentinfo WHERE `fname` = '$name'  OR `mname` = '$name' OR `lname` = '$name' LIKE '%$name%'";
+
+            try{
+                $connection = $this->connection();
+                $statement = $connection->query($sql);
+                $result = $statement->fetchAll();
+                $connection = null;
+                return $result;
+            }
+            catch(PDOException $e){
+                echo $e->getMessage();
+                return false;
+            }
         }
 
         public function update($admstatus,$id) {

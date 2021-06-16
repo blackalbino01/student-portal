@@ -50,15 +50,36 @@ class Student {
        }
     }
 
-    public function searchStudents($name ,$admstatus,$gender ,$jambscore){
+    public function searchStudents($gender ,$jambscore){
         $db = new DatabaseTranscations();
-        $result = $db->searchSelect($name,$admstatus,$gender,$jambscore);
+        $result = $db->searchSelect($gender,$jambscore);
         if ($result) {
            return $result;
         } else {
            return "No results returned";
         }
     }
+
+    public function searchWithAdm($admstatus){
+        $db = new DatabaseTranscations();
+        $result = $db->ajaxsearch($admstatus);
+        if ($result) {
+            return $result;
+        } else{
+            return "No results returned";
+        }
+    }
+
+    public function searchWithName($name){
+        $db = new DatabaseTranscations();
+        $result = $db->liveSearch($name);
+        if ($result) {
+            return $result;
+        } else{
+            return "No results returned";
+        }
+    }
+
 
     public function editAdmstatus($admstatus,$id) {
         $db = new DatabaseTranscations();

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html style="position: relative;height: 100%">
+<html>
 <head>
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, shrink-to-fit=no initial-scale=1.0">
@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
 </head>
-<body style="position: relative;">
+<body>
 	<header>
 		<nav>
 			<div class="nav-menu flex">
@@ -27,7 +27,7 @@
 			</div>
 		</nav>
 	</header>
-	<section>
+	<section style="position:relative;">
 		<div class="content-dashboard">
 			<p class="notice">
 				<strong>Info!</strong>All Students records table
@@ -35,10 +35,10 @@
 			<form method="GET">
 				<div class="dashboard-row flex">
 						<div class="col1">
-					    	<input type="text" id="search" name="name" placeholder="Search Record By Name Only">
+					    	<input type="text" id="search" name="name" placeholder="Search Record By Name Only" onkeyup="showResult(this.value)" >
 					    </div>
 					    <div class="col2">
-						    <select name="admstatus">
+						    <select name="admstatus" onchange="showStudent(this.value)" >
 			                	<option value="" hidden selected>Select Admission Status</option>
 			                	<option value="Undecided">Undecided</option>
 			                	<option value="Admitted">Admitted</option>
@@ -60,7 +60,7 @@
 				</div>
 			</form>
 			<div class="table">
-				<table>
+				<table id="table">
 					<tr>
 						<th>S/n</th>
 						<th>Name</th>
@@ -71,14 +71,13 @@
 					</tr>
 					<?php 
 						require_once '../../config/students.php';
+
 						if(isset($_GET['submit'])){
-							$name = $_GET['name'];
-							$admstatus = $_GET['admstatus'];
 							$gender = $_GET['gender'];
 							$jambscore = $_GET['jambscore'];
 
 							$s = new Student();
-							$result = $s->searchStudents($name,$admstatus,$gender,$jambscore);
+							$result = $s->searchStudents($gender,$jambscore);
 							$counter = 0;
 							if (is_array($result) || is_object($result)){
 								foreach ($result as $row) {
@@ -93,12 +92,14 @@
 								}
 							}
 
+
 							else{
 								echo "<tr>
 								<td colspan=6>No Student Record Found!</td>
 								</tr>";
 							}
 						}
+
 						else{
 
 							$d = new Student();
@@ -113,7 +114,7 @@
 										echo "<td>" .$row['gender']. "</td>";
 										echo "<td>" .$row['jambscore']. "</td>";
 										echo "<td>" .$row['admstatus']. "</td>";
-										echo "<td><a href=\"../students?id=".$row['id']."\"><i class=\"fas fa-eye\"></i></a></td>";
+										echo "<td><a href=\"../../admin/students?id=".$row['id']."\"><i class=\"fas fa-eye\"></i></a></td>";
 									echo "</tr>";
 								}
 							}
@@ -128,8 +129,9 @@
 			</div>
 		</div>
 	</section>
-	<footer>
+	<footer style="position:fixed; bottom: 0;">
 		<p class="footer">All Right Reserved @Ustacky 2021</p>
 	</footer>
-</body>
+	<script type="text/javascript" src="../../assets/js/script.js"></script>
+	</body>
 </html>

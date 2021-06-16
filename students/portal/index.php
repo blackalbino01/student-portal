@@ -16,12 +16,16 @@
 	    $nextofkin = $_POST['nextofkin'];
 	    $jambscore = $_POST['jambscore'];
 
-	    $target = "../images/".basename($uploadimg);
+	    $target = "images/".basename($uploadimg);
         move_uploaded_file($_FILES['uploadimg']['tmp_name'], $target);
 
 	    $insert = new Student();
 	    $insert->addStudent($uploadimg,$fname,$mname,$lname,$email,$birthday,$gender,$phone,$address,$state,$localgovt,$nextofkin,$jambscore);
-	    header("Location:" . "../../admin/dashboard");
+
+	    echo "<div class=\"alert\" id='alert' style=\"display: block\" >
+				<span class=\"closebtn\" onclick=\"this.parentElement.style.display='none';\" >&times;</span>
+				<strong>Success!</strong>Form Submitted Successfully.
+			</div>";
 	}
 ?>
 <!DOCTYPE html>
@@ -53,10 +57,6 @@
 		</nav>
 	</header>
 	<section style="position: relative;">
-		<div class="alert" id='alert' style="display: none" >
-			<span class="closebtn" onclick="this.parentElement.style.display='none';" >&times;</span>
-			<strong>Success!</strong>Form Submitted Successfully.
-		</div>
 		<div class="content-portal">
 			<div class="form-container">
 				<p class="title">

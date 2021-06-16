@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
 </head>
-<body>
+<body onload="checkStatusOnload()">
 	<div class="container" style="position: relative;height: 100%;">
 		<header>
 			<nav>
@@ -42,7 +42,7 @@
 						echo "<div class=\"info flex\">";
 							echo "<div class=\"left-info\">";
 								echo "<div class=\"left-info-img\">";
-									echo "<img src=\"../../students/images/".$result['uploadimg']."\">";
+									echo "<img src=\"../../students/portal/images/".$result['uploadimg']."\">";
 								echo "</div>";
 								echo "<p>Name: ".$result['fname'].' '.$result['mname'].' '.$result['lname']."</p>";
 								echo "<div class=\"status\"><p>Status: <span id=\"updatestatus\">Undecided</span></p></div>";
@@ -70,35 +70,13 @@
 							echo "<div class=\"academic-info-items flex\">";
 								echo "<p>Next Of Kin: ".$result['nextofkin']."</p>";
 								echo "<p>Jamb Score: ".$result['jambscore']."</p>";
-								echo "<p><form method=\"POST\" id=\"formid\" action=".$_SERVER['PHP_SELF'].'?id='.$_GET['id']." ><input type=\"checkbox\" id=\"status\" name=\"admstatus\" value=\"Admitted\""; 
-								if($result['admstatus']=="Admitted"){ 
-									echo "checked";
-								}
-								echo "></form>Status: Admitted</p>";
+								echo "<p><form method=\"GET\" action=".$_SERVER['PHP_SELF'].'?id='.$_GET['id']." ><input type=\"checkbox\" id=\"status\" name=\"admstatus\" value=\"Admitted\"";
+									if($result['admstatus']=="Admitted"){ 
+										echo "checked";
+									}
+								echo " onclick=\"updateAdmStatus(".$_GET['id'].");\"></form>Status: Admitted</p>";
 						    echo "</div>";
 						echo "</div>";
-
-
-						if($_SERVER["REQUEST_METHOD"] == "POST"){
-
-							if(isset($_POST['admstatus'])){
-								$admstatus = $_POST['admstatus'];
-								$id = $_GET['id'];
-
-
-								$update = new Student();
-								$update->editAdmstatus($admstatus,$id);
-							}
-							else{
-								$admstatus = 'Undecided';
-								$id = $_GET['id'];
-
-
-								$update = new Student();
-								$update->editAdmstatus($admstatus,$id);
-							}
-							
-						}
 					}
 				?>
 			</div>

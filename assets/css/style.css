@@ -104,8 +104,8 @@ nav{
 }
 
 .content-dashboard{
+	position: relative;
 	padding: 20px;
-	padding-bottom: 80px;
 
 }
 
@@ -286,8 +286,9 @@ input[type=date]{
 
 .alert{
 	position: absolute;
-	top: 30%;
-	right:20px;
+	top: 10%;
+	left: 25%;
+	width: 50%;
 	z-index:1;
 	padding: 20px;
 	background-color: lightgreen;
@@ -330,9 +331,13 @@ input[type=date]{
 
 .table{
 	padding: 0 20px;
+	margin-bottom: 40px;
+	overflow-x: auto;
+	overflow-y: auto;
 }
 table{
 	width: 100%;
+
 }
 table, th, td {
   border: 1px solid black;
@@ -386,7 +391,7 @@ td,th{
 	margin-right: 20px;
 }
 .left-info .left-info-img{
-	width: 190px;
+	width: 210px;
 	height: 200px;
 	margin: auto;
 	padding: 10px 0;
