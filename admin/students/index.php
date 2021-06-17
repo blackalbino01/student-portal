@@ -81,7 +81,7 @@
 				?>
 			</div>
 		</section>
-		<footer>
+		<footer style="margin-top:40px">
 			<p class="footer">All Right Reserved @Ustacky 2021</p>
 		</footer>
 	</div>

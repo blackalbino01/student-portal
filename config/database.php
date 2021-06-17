@@ -93,7 +93,7 @@
         }
 
         public function liveSearch($name=null){
-            $sql = "SELECT * FROM studentinfo WHERE `fname` = '$name'  OR `mname` = '$name' OR `lname` = '$name' LIKE '%$name%'";
+            $sql = "SELECT * FROM studentinfo WHERE `fname` LIKE '%$name%' OR `mname` LIKE '%$name%' OR `lname` LIKE '%$name%'";
 
             try{
                 $connection = $this->connection();
